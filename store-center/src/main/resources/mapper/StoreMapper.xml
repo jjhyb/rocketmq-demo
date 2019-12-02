@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.storecenter.mapper.StoreMapper">
+  <resultMap id="BaseResultMap" type="com.yibo.storecenter.domain.entity.Store">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="store_count" jdbcType="INTEGER" property="storeCount" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modif_time" jdbcType="TIMESTAMP" property="modifTime" />
+  </resultMap>
+
+  <select id="selectVersion" resultType="int">
+    select version from store where store.supplier_id=#{supplierId} and store.goods_id=#{goodsId}
+  </select>
+
+  <select id="selectStoreCount" resultType="int">
+    select store_count from store where store.supplier_id=#{supplierId} and store.goods_id=#{goodsId}
+  </select>
+
+  <update id="updateStoreCountByVersion">
+    update store set store.version=version + 1,
+    store_count=store_count - #{count},
+    modifier=#{user},
+    modif_time=#{updateTime}
+    where supplier_id = #{supplierId}
+    and goods_id=#{goodsId}
+    and version=#{version}
+    and store_count > 0
+    and store_count >= #{count}
+  </update>
+
+  <update id="rollbackStoreCountAndVersion">
+    update store set store.version=version - 1,
+    store_count=store_count + #{count},
+    modifier=#{user},
+    modif_time=#{updateTime}
+    where supplier_id = #{supplierId}
+    and goods_id=#{goodsId}
+  </update>
+</mapper>

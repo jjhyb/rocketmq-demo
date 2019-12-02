@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.packagecenter.mapper.LogisticPackageMapper">
+  <resultMap id="BaseResultMap" type="com.yibo.packagecenter.domain.entity.LogisticPackage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="package_id" jdbcType="VARCHAR" property="packageId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="package_status" jdbcType="VARCHAR" property="packageStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

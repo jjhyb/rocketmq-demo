@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibo.ordercenter.mapper.OrderCenterMapper">
+  <resultMap id="BaseResultMap" type="com.yibo.ordercenter.domain.entity.OrderCenter">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="platform_id" jdbcType="VARCHAR" property="platformId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="modif_time" jdbcType="TIMESTAMP" property="modifTime" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+  </resultMap>
+
+  <update id="updateOrderStatus" >
+    update order_center
+		set  order_status = #{orderStatus,jdbcType=VARCHAR},
+		     modifier = #{updateBy,jdbcType=VARCHAR},
+		     modif_time = #{updateTime,jdbcType=TIMESTAMP}
+		where order_id = #{orderId,jdbcType=VARCHAR}
+   </update>
+</mapper>
